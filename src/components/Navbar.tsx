@@ -11,7 +11,7 @@ function Navbar() {
               <img src={logo} alt="logo" className="h-12 w-12" />
             </div>
             <div className="flex mt-2 pl-2">
-              <span className="font-semibold text-2xl">RunLap</span>
+              <span className="font-semibold text-2xl">RunSlicr</span>
             </div>
           </div>
         </a>
