@@ -1,4 +1,6 @@
 import '../App.css';
+import GithubButton from './GithubButton';
+import { ModeToggle } from './ModeToggle';
 import logo from '/stopwatch-pause.svg'
 
 function Navbar() {
@@ -17,13 +19,13 @@ function Navbar() {
         </a>
       </div>
 
-      {/* <div className='flex inline-flex items-center'>
+      <div className='flex inline-flex items-center'>
         <div className='self-end mr-1 pb-3'>
-          <span className="text-xs">{repo}/{ref}/{sha}</span>
+          {/* <span className="text-xs">{repo}/{ref}/{sha}</span> */}
         </div>
         <GithubButton />
-        <ThemeToggle />
-      </div> */}
+        <ModeToggle />
+      </div>
     </div>
   );
 }
