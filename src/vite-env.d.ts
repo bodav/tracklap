@@ -1,7 +1,10 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  readonly GITHUB_REPOSITORY: string;
+  readonly VITE_GITHUB_REPOSITORY: string;
+  readonly VITE_APP_NAME: string;
+  readonly VITE_GIT_SHA: string;
+  readonly VITE_GIT_BRANCH_NAME: string;
 }
 
 interface ImportMeta {
