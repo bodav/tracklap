@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import githubLogo from '@/assets/github.svg'
+import GithubLogo from '@/assets/github.svg?react';
 
 const GithubButton = () => {
     const repo = import.meta.env.VITE_GITHUB_REPOSITORY;
@@ -11,10 +11,7 @@ const GithubButton = () => {
             variant="ghost"
             className='mr-1 [&_svg]:size-5'>
             <a href={url} target="_blank">
-                <svg className='fill-current'>
-                    <use xlinkHref={`${githubLogo}#ghicon`}>
-                    </use>
-                </svg>
+                <GithubLogo />
             </a>
         </Button>
     );
