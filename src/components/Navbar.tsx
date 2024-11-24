@@ -1,7 +1,7 @@
-import '../App.css';
+import '@/App.css';
 import GithubButton from './GithubButton';
 import { ModeToggle } from './ModeToggle';
-import logo from '/stopwatch-pause.svg'
+import logo from '/stopwatch.svg'
 
 function Navbar() {
   const appName = import.meta.env.VITE_APP_NAME;
@@ -14,8 +14,8 @@ function Navbar() {
       <div>
         <a href='#'>
           <div className='flex inline-flex items-center text-foreground'>
-            <div className="flex mt-1">
-              <img src={logo} alt="logo" className="h-12 w-12" />
+            <div className="flex mt-2">
+              <img src={logo} alt="logo" className="size-10" />
             </div>
             <div className="flex mt-2 pl-2">
               <span className="font-semibold text-2xl">{appName}</span>

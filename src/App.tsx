@@ -1,6 +1,6 @@
-import './App.css';
-import Navbar from './components/Navbar';
-import { ThemeProvider } from './components/ThemeProvider';
+import '@/App.css';
+import Navbar from '@/components/Navbar';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 function App() {
   return (
