@@ -15,8 +15,8 @@ function SegmentsCard() {
                 <CardContent>
                     <div className='w-full'>
                         <div className='grid grid-cols-5 gap-2 my-2'>
-                            <div className='w-9'>
-                                <span className='font-bold mr-4'>#1</span>
+                            <div>
+                                <span className='font-thin mr-4'>#1</span>
                             </div>
                             <div className='text-right'>
                                 <span className="mr-1">6453</span>
@@ -35,8 +35,8 @@ function SegmentsCard() {
                                 <span className='text-sm font-thin'>hr</span>
                             </div>
 
-                            <div className='w-9'>
-                                <span className='font-bold'>#20</span>
+                            <div>
+                                <span className='font-thin'>#20</span>
                             </div>
                             <div className='text-right'>
                                 <span className="mr-1">6453</span>
