@@ -115,7 +115,7 @@ function RouteCard() {
                 </div>
 
                 <Button className='w-full' disabled={form.formState.isSubmitting}>
-                  {form.formState.isSubmitting ? "Starting..." : "Start"}
+                  {form.formState.isSubmitting ? "Calculating..." : "Calculate"}
                 </Button>
               </form>
             </Form>
