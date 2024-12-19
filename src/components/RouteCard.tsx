@@ -18,24 +18,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { z } from "zod";
 import getSegments from '@/lib/segment';
+import { formSchema } from '@/lib/schemas';
 
 function RouteCard() {
-
-  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
-
-  const formSchema = z.object({
-    file: z.instanceof(FileList)
-      .refine((fileList) => fileList.length === 1, 'GPX file is required')
-      .refine((files) => files?.[0]?.name.endsWith(".gpx"), "Only .gpx files are accepted.")
-      .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, "Max file size is 5MB."),
-    trimStart: z.coerce.number().positive({
-      message: 'Start trim must be positive',
-    }).optional(),
-    trimEnd: z.coerce.number().positive({
-      message: 'End trim must be positive',
-    }).optional(),
-  });
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema)
   });
@@ -44,6 +29,7 @@ function RouteCard() {
 
   const handleSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (data) => {
     console.log(data);
+    
     const seg = await getSegments({ 
       gpx: data.file[0],
       trimStart: data.trimStart || 0,
