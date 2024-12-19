@@ -1,7 +1,11 @@
 interface TrackPoint {
   lat: number;
   lon: number;
-  time?: string;
+  time: Date;
+  ele: number;
+  power: number;
+  hr: number;
+  cad: number;
 }
 
 interface GPXData {
@@ -19,7 +23,7 @@ function readGPXFile(file: File): Promise<string> {
   });
 }
 
-async function parse(file: File): Promise<GPXData> {
+async function parseGPXFile(file: File): Promise<GPXData> {
   const gpxString = await readGPXFile(file);
   return parseGPX(gpxString);
 }
@@ -38,9 +42,16 @@ function parseGPX(gpxString: string): GPXData {
     const trkpt = trkpts[i];
     const lat = parseFloat(trkpt.getAttribute("lat") || "0");
     const lon = parseFloat(trkpt.getAttribute("lon") || "0");
-    const time = trkpt.getElementsByTagName("time")[0]?.textContent || undefined;
+    const timeString = trkpt.getElementsByTagName("time")[0]?.textContent || null;
+    const time = timeString ? new Date(timeString) : new Date(0);
+    const ele = parseFloat(trkpt.getElementsByTagName("ele")[0].textContent || "0");
+    const extensions = trkpt.getElementsByTagName("extensions")[0];
+    const power = parseFloat(extensions.getElementsByTagName("power")[0].textContent || "0");
+    const tpex = extensions.getElementsByTagName("gpxtpx:TrackPointExtension")[0];
+    const hr = parseFloat(tpex.getElementsByTagName("gpxtpx:hr")[0].textContent || "0");
+    const cad = parseFloat(tpex.getElementsByTagName("gpxtpx:cad")[0].textContent || "0");
 
-    trackPoints.push({ lat, lon, time });
+    trackPoints.push({ lat, lon, time, ele, power, hr, cad });
   }
 
   return {
@@ -49,3 +60,6 @@ function parseGPX(gpxString: string): GPXData {
     trackPoints,
   };
 }
+
+export { parseGPXFile };
+export type { GPXData, TrackPoint };

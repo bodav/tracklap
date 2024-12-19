@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { z } from "zod";
-import calculateSegments from '@/lib/segment';
+import getSegments from '@/lib/segment';
 
 function RouteCard() {
 
@@ -44,11 +44,13 @@ function RouteCard() {
 
   const handleSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (data) => {
     console.log(data);
-    calculateSegments({ 
+    const seg = await getSegments({ 
       gpx: data.file[0],
       trimStart: data.trimStart || 0,
       trimEnd: data.trimEnd || 0,
     });
+
+    console.log(seg);
   };
 
   return (
