@@ -51,3 +51,4 @@ export default tseslint.config({
 
 
 https://ui.jln.dev/
+https://medium.com/@aalbertini95_90842/a-comparative-look-at-how-to-use-the-context-api-in-react-18-vs-react-19-898cb2a367ff
