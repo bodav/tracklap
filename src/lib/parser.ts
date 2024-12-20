@@ -8,7 +8,7 @@ interface TrackPoint {
   cad: number;
 }
 
-interface GPXData {
+interface GPXTrack {
   name: string;
   type: string;
   trackPoints: TrackPoint[];
@@ -23,12 +23,12 @@ function readGPXFile(file: File): Promise<string> {
   });
 }
 
-async function parseGPXFile(file: File): Promise<GPXData> {
+async function parseGPXFile(file: File): Promise<GPXTrack> {
   const gpxString = await readGPXFile(file);
   return parseGPX(gpxString);
 }
 
-function parseGPX(gpxString: string): GPXData {
+function parseGPX(gpxString: string): GPXTrack {
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(gpxString, "application/xml");
 
@@ -62,4 +62,4 @@ function parseGPX(gpxString: string): GPXData {
 }
 
 export { parseGPXFile };
-export type { GPXData, TrackPoint };
+export type { GPXTrack, TrackPoint };

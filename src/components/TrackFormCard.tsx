@@ -17,10 +17,10 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { z } from "zod";
-import getSegments from '@/lib/segment';
+import getTrack from '@/lib/track';
 import { formSchema } from '@/lib/schemas';
 
-function RouteCard() {
+function TrackFormCard() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema)
   });
@@ -30,20 +30,20 @@ function RouteCard() {
   const handleSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (data) => {
     console.log(data);
     
-    const seg = await getSegments({ 
+    const track = await getTrack({ 
       gpx: data.file[0],
       trimStart: data.trimStart || 0,
       trimEnd: data.trimEnd || 0,
     });
 
-    console.log(seg);
+    console.log(track);
   };
 
   return (
     <>
       <Card>
         <CardHeader>
-          <CardTitle>Route</CardTitle>
+          <CardTitle>Track</CardTitle>
         </CardHeader>
         <CardContent>
           <div>
@@ -126,4 +126,4 @@ function RouteCard() {
   );
 }
 
-export default RouteCard;
+export default TrackFormCard;

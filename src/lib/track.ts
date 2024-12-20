@@ -1,6 +1,6 @@
-import { parseGPXFile, TrackPoint } from "@/lib/gpxparser";
+import { parseGPXFile, TrackPoint } from "@/lib/parser";
 
-interface RouteOptions {
+interface TrackOptions {
     gpx: File,
     trimStart: number,
     trimEnd: number,
@@ -32,7 +32,7 @@ interface Track {
     segments?: TrackSegment[];
 }
 
-async function getSegments(options: RouteOptions): Promise<Track> {
+async function getTrack(options: TrackOptions): Promise<Track> {
     const result = await parseGPXFile(options.gpx);
     calculateTrackPointMetadata(result.trackPoints);
     console.log(result);
@@ -147,4 +147,5 @@ function haversineDistance(coord1: TrackPoint, coord2: TrackPoint): number {
     return R * c; // Distance in meters
 }
 
-export default getSegments;
+export default getTrack;
+export type { Track, TrackSegment, TrackPointWithMetadata };
