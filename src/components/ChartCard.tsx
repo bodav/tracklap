@@ -1,19 +1,18 @@
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
+import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 import {
   Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+  CardTitle
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart"
-
+  ChartTooltipContent
+} from "@/components/ui/chart";
 
 const chartData = [
   { month: "January", desktop: 186, mobile: 80 },
@@ -21,19 +20,19 @@ const chartData = [
   { month: "March", desktop: 237, mobile: 120 },
   { month: "April", desktop: 73, mobile: 190 },
   { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-]
+  { month: "June", desktop: 214, mobile: 140 }
+];
 
 const chartConfig = {
   desktop: {
     label: "Desktop",
-    color: "hsl(var(--chart-1))",
+    color: "hsl(var(--chart-1))"
   },
   mobile: {
     label: "Mobile",
-    color: "hsl(var(--chart-2))",
-  },
-} satisfies ChartConfig
+    color: "hsl(var(--chart-2))"
+  }
+} satisfies ChartConfig;
 
 export default function ChartCard() {
   return (
@@ -43,15 +42,16 @@ export default function ChartCard() {
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="aspect-auto h-[300px] xl:h-[200px] 2xl:h-[250px] w-full">
+        <ChartContainer
+          config={chartConfig}
+          className="aspect-auto h-[300px] xl:h-[200px] 2xl:h-[250px] w-full">
           <LineChart
             accessibilityLayer
             data={chartData}
             margin={{
               left: 12,
-              right: 12,
-            }}
-          >
+              right: 12
+            }}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="month"
@@ -91,5 +91,5 @@ export default function ChartCard() {
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }

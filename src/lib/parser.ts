@@ -42,14 +42,25 @@ function parseGPX(gpxString: string): GPXTrack {
     const trkpt = trkpts[i];
     const lat = parseFloat(trkpt.getAttribute("lat") || "0");
     const lon = parseFloat(trkpt.getAttribute("lon") || "0");
-    const timeString = trkpt.getElementsByTagName("time")[0]?.textContent || null;
+    const timeString =
+      trkpt.getElementsByTagName("time")[0]?.textContent || null;
     const time = timeString ? new Date(timeString) : new Date(0);
-    const ele = parseFloat(trkpt.getElementsByTagName("ele")[0].textContent || "0");
+    const ele = parseFloat(
+      trkpt.getElementsByTagName("ele")[0].textContent || "0"
+    );
     const extensions = trkpt.getElementsByTagName("extensions")[0];
-    const power = parseFloat(extensions.getElementsByTagName("power")[0].textContent || "0");
-    const tpex = extensions.getElementsByTagName("gpxtpx:TrackPointExtension")[0];
-    const hr = parseFloat(tpex.getElementsByTagName("gpxtpx:hr")[0].textContent || "0");
-    const cad = parseFloat(tpex.getElementsByTagName("gpxtpx:cad")[0].textContent || "0");
+    const power = parseFloat(
+      extensions.getElementsByTagName("power")[0].textContent || "0"
+    );
+    const tpex = extensions.getElementsByTagName(
+      "gpxtpx:TrackPointExtension"
+    )[0];
+    const hr = parseFloat(
+      tpex.getElementsByTagName("gpxtpx:hr")[0].textContent || "0"
+    );
+    const cad = parseFloat(
+      tpex.getElementsByTagName("gpxtpx:cad")[0].textContent || "0"
+    );
 
     trackPoints.push({ lat, lon, time, ele, power, hr, cad });
   }
@@ -57,7 +68,7 @@ function parseGPX(gpxString: string): GPXTrack {
   return {
     name,
     type,
-    trackPoints,
+    trackPoints
   };
 }
 

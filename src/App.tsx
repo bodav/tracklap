@@ -1,11 +1,11 @@
-import '@/App.css';
-import Navbar from '@/components/Navbar';
-import { ThemeProvider } from '@/components/ThemeProvider';
-import TrackFormCard from '@/components/TrackFormCard';
-import SummaryCard from '@/components/SummaryCard';
-import SegmentsCard from '@/components/SegmentsCard';
-import ChartCard from '@/components/ChartCard';
-import { TrackProvider } from '@/components/TrackProvider';
+import "@/App.css";
+import Navbar from "@/components/Navbar";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import TrackFormCard from "@/components/TrackFormCard";
+import SummaryCard from "@/components/SummaryCard";
+import SegmentsCard from "@/components/SegmentsCard";
+import ChartCard from "@/components/ChartCard";
+import { TrackProvider } from "@/components/TrackProvider";
 
 function App() {
   return (
@@ -13,15 +13,15 @@ function App() {
       <TrackProvider>
         <div>
           <Navbar />
-          <div className='mt-8 mx-8'>
+          <div className="mt-8 mx-8">
             <div className="flex flex-col lg:flex-row justify-between gap-10 mb-5">
-              <div className='w-full'>
+              <div className="w-full">
                 <TrackFormCard />
               </div>
-              <div className='w-full'>
+              <div className="w-full">
                 <SummaryCard />
               </div>
-              <div className='w-full'>
+              <div className="w-full">
                 <SegmentsCard />
               </div>
             </div>
@@ -32,7 +32,7 @@ function App() {
         </div>
       </TrackProvider>
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;
