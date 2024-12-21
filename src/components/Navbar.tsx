@@ -13,7 +13,7 @@ function Navbar() {
     <div className='bg-secondary text-muted-foreground border-b h-14 px-3 flex justify-between'>
       <div>
         <a href='#'>
-          <div className='flex inline-flex items-center text-primary'>
+          <div className='inline-flex items-center text-primary'>
             <div className="flex mt-2">
               <Logo className="size-10" />
             </div>
@@ -24,7 +24,7 @@ function Navbar() {
         </a>
       </div>
 
-      <div className='flex inline-flex items-center'>
+      <div className='inline-flex items-center'>
         <div className='self-end mr-1 pb-3'>
           <span className="text-xs">{repo}/{ref}/{sha}</span>
         </div>
