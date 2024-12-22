@@ -40,7 +40,7 @@ function SummaryCard() {
             </div>
             <div className="text-center">
               <span className="font-thin text-sm block">Avg. Cadance</span>
-              <span className="font-bold block text-2xl">178</span>
+              <span className="font-bold block text-2xl">{track?.sum.averageCadence}</span>
             </div>
             <div className="text-center">
               <span className="font-thin text-sm block">Avg. Power</span>
