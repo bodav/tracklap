@@ -14,16 +14,16 @@ interface TrackPointWithMetadata extends TrackPoint {
 }
 
 interface TrackSegment {
-  distanceAtStart?: number;
-  distanceAtEnd?: number;
-  totalDistance?: number;
-  startTime?: string;
-  endTime?: string;
-  duration?: string;
-  averageHeartRate?: number;
-  averageCadence?: number;
-  averagePower?: number;
-  averagePace?: string;
+  distanceAtStart: number;
+  distanceAtEnd: number;
+  totalDistance: number;
+  startTime: string;
+  endTime: string;
+  duration: string;
+  averageHeartRate: number;
+  averageCadence: number;
+  averagePower: number;
+  averagePace: string;
 }
 
 interface Track {
@@ -55,9 +55,9 @@ async function getTrack(options: TrackOptions): Promise<Track> {
   };
 }
 
-function sumTrackSegment(trackPoints: TrackPointWithMetadata[]): TrackSegment {
+function sumTrackSegment(trackPoints: TrackPointWithMetadata[]): TrackSegment | undefined {
   if (!trackPoints || trackPoints.length === 0) {
-    return {};
+    return undefined;
   }
 
   const totalDistance = trackPoints.reduce(
@@ -84,9 +84,9 @@ function sumTrackSegment(trackPoints: TrackPointWithMetadata[]): TrackSegment {
     trackPoints.length;
 
   return {
-    distanceAtStart: trackPoints[0].distanceTraveledUntilThisPoint,
+    distanceAtStart: Math.round(trackPoints[0].distanceTraveledUntilThisPoint || 0),
     distanceAtEnd:
-      trackPoints[trackPoints.length - 1].distanceTraveledUntilThisPoint,
+      Math.round(trackPoints[trackPoints.length - 1].distanceTraveledUntilThisPoint || 0),
     totalDistance: totalDistance,
     startTime: startTime.toTimeString().split(" ")[0],
     endTime: endTime.toTimeString().split(" ")[0],
