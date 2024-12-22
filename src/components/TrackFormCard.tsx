@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,6 +14,8 @@ import { Input } from "@/components/ui/input";
 import { z } from "zod";
 import getTrack from "@/lib/track";
 import { formSchema } from "@/lib/schemas";
+import { useTrack } from "@/components/TrackProvider";
+import { useState } from "react";
 
 function TrackFormCard() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -21,6 +23,17 @@ function TrackFormCard() {
   });
 
   const fileRef = form.register("file");
+  const { setTrack } = useTrack();
+  const [fileDescription, setFileDescription] = useState("Start by selecting a gpx file");
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const size = (file.size / 1024).toFixed(2); // size in KB
+      const lastModified = new Date(file.lastModified).toLocaleString();
+      setFileDescription(`Size: ${size} KB, Last Modified: ${lastModified}`);
+    }
+  };
 
   const handleSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (
     data
@@ -34,6 +47,7 @@ function TrackFormCard() {
     });
 
     console.log(track);
+    setTrack(track);
   };
 
   return (
@@ -41,6 +55,7 @@ function TrackFormCard() {
       <Card>
         <CardHeader>
           <CardTitle>Track</CardTitle>
+          <CardDescription>{fileDescription}</CardDescription>
         </CardHeader>
         <CardContent>
           <div>
@@ -58,7 +73,15 @@ function TrackFormCard() {
                           Strava GPX file
                         </FormLabel>
                         <FormControl>
-                          <Input type="file" accept=".gpx" {...fileRef} />
+                          <Input 
+                            type="file" 
+                            accept=".gpx" 
+                            {...fileRef} 
+                            onChange={(e) => {
+                              fileRef.onChange(e);
+                              handleFileChange(e);
+                            }}
+                            />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

@@ -28,6 +28,7 @@ interface TrackSegment {
 interface Track {
   name: string;
   type: string;
+  time?: Date;
   sum: TrackSegment;
   segments?: TrackSegment[];
 }
@@ -47,6 +48,7 @@ async function getTrack(options: TrackOptions): Promise<Track> {
   return {
     name: result.name,
     type: result.type,
+    time: result.time,
     sum: summary,
     segments: [summary]
   };
@@ -124,7 +126,7 @@ function calculateTotalDistance(trackPoints: TrackPointWithMetadata[]): number {
 function calculateTrackPointMetadata(
   trackPoints: TrackPointWithMetadata[]
 ): void {
-    
+
   trackPoints.reduce((prev, next) => {
     const distanceTraveledInMeters = haversineDistance(prev, next);
     next.distanceFromLastPoint = distanceTraveledInMeters;

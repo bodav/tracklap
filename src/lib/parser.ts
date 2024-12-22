@@ -11,6 +11,7 @@ interface TrackPoint {
 interface GPXTrack {
   name: string;
   type: string;
+  time?: Date;
   trackPoints: TrackPoint[];
 }
 
@@ -32,6 +33,8 @@ function parseGPX(gpxString: string): GPXTrack {
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(gpxString, "application/xml");
 
+  const timeString = xmlDoc.getElementsByTagName("time")[0]?.textContent || undefined;
+  const time = timeString ? new Date(timeString) : undefined;
   const name = xmlDoc.getElementsByTagName("name")[0]?.textContent || "";
   const type = xmlDoc.getElementsByTagName("type")[0]?.textContent || "";
 
@@ -68,6 +71,7 @@ function parseGPX(gpxString: string): GPXTrack {
   return {
     name,
     type,
+    time,
     trackPoints
   };
 }
