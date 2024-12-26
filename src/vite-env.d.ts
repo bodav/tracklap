@@ -6,6 +6,7 @@ interface ImportMetaEnv {
   readonly VITE_APP_NAME: string;
   readonly VITE_GIT_SHA: string;
   readonly VITE_GIT_BRANCH_NAME: string;
+  readonly VITE_EXPOSED: string;
 }
 
 interface ImportMeta {

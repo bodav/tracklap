@@ -1,4 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,7 +30,9 @@ function TrackFormCard() {
 
   const fileRef = form.register("file");
   const { setTrack } = useTrack();
-  const [fileDescription, setFileDescription] = useState("Start by selecting a gpx file");
+  const [fileDescription, setFileDescription] = useState(
+    "Start by selecting a gpx file"
+  );
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -73,15 +81,15 @@ function TrackFormCard() {
                           Strava GPX file
                         </FormLabel>
                         <FormControl>
-                          <Input 
-                            type="file" 
-                            accept=".gpx" 
-                            {...fileRef} 
+                          <Input
+                            type="file"
+                            accept=".gpx"
+                            {...fileRef}
                             onChange={(e) => {
                               fileRef.onChange(e);
                               handleFileChange(e);
                             }}
-                            />
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
