@@ -8,7 +8,6 @@ import ChartCard from "@/components/ChartCard";
 import { TrackProvider } from "@/components/TrackProvider";
 
 function App() {
-  console.log(import.meta.env.VITE_EXPOSED);
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <TrackProvider>
