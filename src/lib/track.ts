@@ -24,9 +24,19 @@ interface Track {
 
 async function getTrack(options: TrackOptions): Promise<Track> {
   const result = await parseGPXFile(options.gpx);
-  calculateTrackPointMetadata(result.trackPoints);
+  let trackPoints = calculateTrackPointMetadata(result.trackPoints);
 
-  const summary = sumTrackSegment(result.trackPoints);
+  if (options.trimStart || options.trimEnd) {
+    trackPoints = trimTrackPoints(
+      trackPoints,
+      options.trimStart,
+      options.trimEnd
+    );
+
+    //trackPoints = calculateTrackPointMetadata(trackPoints);
+  }
+
+  const summary = sumTrackSegment(trackPoints);
   return {
     name: result.name,
     type: result.type,
@@ -38,7 +48,7 @@ async function getTrack(options: TrackOptions): Promise<Track> {
 
 function calculateTrackPointMetadata(
   trackPoints: TrackPointWithMetadata[]
-): void {
+): TrackPointWithMetadata[] {
   trackPoints.reduce((prev, next) => {
     const distanceTraveledInMeters = haversineDistance(prev, next);
     next.distanceFromLastPoint = distanceTraveledInMeters;
@@ -64,6 +74,7 @@ function calculateTrackPointMetadata(
   });
 
   trackPoints.shift(); // remove the first point, as it has no distance from the previous point
+  return trackPoints;
 }
 
 function haversineDistance(coord1: TrackPoint, coord2: TrackPoint): number {
@@ -82,6 +93,25 @@ function haversineDistance(coord1: TrackPoint, coord2: TrackPoint): number {
   const c = 2 * Math.asin(Math.sqrt(a));
 
   return R * c; // Distance in meters
+}
+
+function trimTrackPoints(
+  trackPoints: TrackPointWithMetadata[],
+  trimStart: number,
+  trimEnd: number
+): TrackPointWithMetadata[] {
+  const totalDistance =
+    trackPoints[trackPoints.length - 1].distanceTraveledUntilThisPoint || 0;
+
+  const startIndex = trackPoints.findIndex(
+    (point) => point.distanceTraveledUntilThisPoint! >= trimStart
+  );
+
+  const endIndex = trackPoints.findIndex(
+    (point) => point.distanceTraveledUntilThisPoint! >= totalDistance - trimEnd
+  );
+
+  return trackPoints.slice(startIndex, endIndex + 1);
 }
 
 export default getTrack;

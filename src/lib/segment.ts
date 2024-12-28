@@ -46,7 +46,7 @@ function sumTrackSegment(trackPoints: TrackPointWithMetadata[]): TrackSegment {
     distanceAtEnd: Math.round(
       trackPoints[trackPoints.length - 1].distanceTraveledUntilThisPoint || 0
     ),
-    totalDistance: totalDistance,
+    totalDistance: Math.round(totalDistance),
     startTime: startTime.toTimeString().split(" ")[0],
     endTime: endTime.toTimeString().split(" ")[0],
     duration: duration,

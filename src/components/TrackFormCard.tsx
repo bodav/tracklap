@@ -25,7 +25,12 @@ import { useState } from "react";
 
 function TrackFormCard() {
   const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
+
+    defaultValues: {
+      trimStart: 0,
+      trimEnd: 0
+    }
   });
 
   const fileRef = form.register("file");
@@ -104,7 +109,7 @@ function TrackFormCard() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="uppercase text-xs font-bold">
-                          Trim start
+                          Trim start (Meters)
                         </FormLabel>
                         <FormControl>
                           <Input
@@ -123,7 +128,7 @@ function TrackFormCard() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="uppercase text-xs font-bold">
-                          Trim end
+                          Trim end (Meters)
                         </FormLabel>
                         <FormControl>
                           <Input

@@ -30,7 +30,7 @@ function SummaryCard() {
             </div>
             <div className="text-center">
               <span className="font-thin text-sm block">Distance</span>
-              <span className="font-bold block text-2xl">{`${(track?.sum?.distanceAtEnd || 0) / 1000} km`}</span>
+              <span className="font-bold block text-2xl">{`${(track?.sum?.totalDistance || 0) / 1000} km`}</span>
             </div>
             <div className="text-center">
               <span className="font-thin text-sm block">Avg. Pace</span>

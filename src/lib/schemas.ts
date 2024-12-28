@@ -16,14 +16,10 @@ export const formSchema = z.object({
     ),
   trimStart: z.coerce
     .number()
-    .positive({
-      message: "Start trim must be positive"
-    })
+    .min(0, { message: "Start trim must be positive" })
     .optional(),
   trimEnd: z.coerce
     .number()
-    .positive({
-      message: "End trim must be positive"
-    })
+    .min(0, { message: "End trim must be positive" })
     .optional()
 });
