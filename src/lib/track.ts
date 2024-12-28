@@ -1,10 +1,5 @@
 import { parseGPXFile, TrackPoint } from "@/lib/parser";
-import {
-  calculateAveragePace,
-  calculateTotalDistance,
-  sumTrackSegment,
-  TrackSegment
-} from "@/lib/segment";
+import { sumTrackSegment, TrackSegment } from "@/lib/segment";
 
 interface TrackOptions {
   gpx: File;
@@ -23,20 +18,13 @@ interface Track {
   name: string;
   type: string;
   time?: Date;
-  sum: TrackSegment | undefined;
-  segments?: Array<TrackSegment | undefined>;
+  sum: TrackSegment;
+  segments: TrackSegment[];
 }
 
 async function getTrack(options: TrackOptions): Promise<Track> {
   const result = await parseGPXFile(options.gpx);
   calculateTrackPointMetadata(result.trackPoints);
-  console.log(result);
-
-  const totalDistance = calculateTotalDistance(result.trackPoints);
-  console.log(`Total distance: ${totalDistance}`);
-
-  const averagePace = calculateAveragePace(result.trackPoints);
-  console.log(`Average Pace: ${averagePace} min/km`);
 
   const summary = sumTrackSegment(result.trackPoints);
   return {

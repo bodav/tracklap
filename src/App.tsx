@@ -3,9 +3,9 @@ import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import TrackFormCard from "@/components/TrackFormCard";
 import SummaryCard from "@/components/SummaryCard";
-import SegmentsCard from "@/components/SegmentsCard";
 import ChartCard from "@/components/ChartCard";
 import { TrackProvider } from "@/components/TrackProvider";
+import TrackDisplay from "@/components/TrackDisplay";
 
 function App() {
   return (
@@ -18,15 +18,16 @@ function App() {
               <div className="w-full">
                 <TrackFormCard />
               </div>
-              <div className="w-full">
-                <SummaryCard />
-              </div>
-              <div className="w-full">
-                <SegmentsCard />
-              </div>
+              <TrackDisplay>
+                <div className="w-full">
+                  <SummaryCard />
+                </div>
+              </TrackDisplay>
             </div>
             <div className="w-full">
-              <ChartCard />
+              <TrackDisplay>
+                <ChartCard />
+              </TrackDisplay>
             </div>
           </div>
         </div>

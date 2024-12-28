@@ -9,22 +9,18 @@ import {
 import {
   ChartConfig,
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent
 } from "@/components/ui/chart";
-
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 }
-];
+import { useTrack } from "@/components/TrackProvider";
+import { getChartData } from "@/lib/chart";
+import SegmentsTable from "./SegmentsTable";
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  speed: {
+    label: "#1",
     color: "hsl(var(--chart-1))"
   },
   mobile: {
@@ -34,15 +30,20 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function ChartCard() {
+  const { track } = useTrack();
+
+  const chartData = track ? getChartData(track.sum) : [];
+  const segments = track ? track.segments : [];
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Run segments</CardTitle>
+        <CardTitle>Segments</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-[300px] xl:h-[200px] 2xl:h-[250px] w-full">
+          className="aspect-auto h-[300px] xl:h-[400px] 2xl:h-[400px] w-full">
           <LineChart
             accessibilityLayer
             data={chartData}
@@ -50,24 +51,19 @@ export default function ChartCard() {
               left: 12,
               right: 12
             }}>
-            <CartesianGrid/>
+            <CartesianGrid />
             <XAxis
-              dataKey="month"
+              dataKey="distance"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
+              minTickGap={50}
+              tickFormatter={(value) => Math.round(value / 1000).toString()}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <ChartLegend content={<ChartLegendContent />} />
             <Line
-              dataKey="desktop"
-              type="monotone"
-              stroke="var(--color-desktop)"
-              strokeWidth={2}
-              dot={false}
-            />
-            <Line
-              dataKey="mobile"
+              dataKey="speed"
               type="monotone"
               stroke="var(--color-mobile)"
               strokeWidth={2}
@@ -77,7 +73,7 @@ export default function ChartCard() {
         </ChartContainer>
       </CardContent>
       <CardFooter>
-
+        <SegmentsTable segments={segments} />
       </CardFooter>
     </Card>
   );
