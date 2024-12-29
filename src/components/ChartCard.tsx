@@ -25,7 +25,7 @@ const chartConfig = {
   },
   mobile: {
     label: "Mobile",
-    color: "hsl(var(--chart-2))"
+    color: "hsl(var(--chart-1))"
   }
 } satisfies ChartConfig;
 
