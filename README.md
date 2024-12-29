@@ -1,57 +1,71 @@
-# React + TypeScript + Vite
+# TrackLap
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TrackLap is a webapp that can visualize Strava GPX files. It allows users to upload a GPX file, visualize track data, and analyze various metrics such as pace, power, and heart rate.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Parse GPX files clientside
+- Visualize track segments
+- compare metrics like pace, power, and heart rate
+- Responsive design
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
 
-- Configure the top-level `parserOptions` property like this:
+- Node.js (version 20 or higher)
+- npm (version 7 or higher)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Installation
+
+1. Clone the repository:
+
+```
+git clone https://github.com/bodav/tracklap.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```
+npm install
 ```
 
+### Running the Application
 
-https://ui.jln.dev/
-https://medium.com/@aalbertini95_90842/a-comparative-look-at-how-to-use-the-context-api-in-react-18-vs-react-19-898cb2a367ff
-https://medium.com/zestgeek/mastering-reacts-usecontext-hook-simplifying-state-management-65894e6dc431
-https://www.youtube.com/watch?v=HYKDUF8X3qI
-https://www.youtube.com/watch?v=5LrDIWkK_Bc
+To start the development server, run:
+
+```
+npm run dev
+```
+
+### Building for Production
+
+To build the application for production, run:
+
+```
+npm run build
+```
+
+The production-ready files will be in the dist directory.
+
+### Linting and Formatting
+
+To lint the code, run:
+
+```
+npm run lint
+```
+
+To format the code with Prettier, run:
+
+```
+npm run prettier
+```
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request if you have any improvements or bug fixes.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
