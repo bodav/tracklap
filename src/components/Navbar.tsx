@@ -5,7 +5,6 @@ import Logo from "@/assets/app.svg?react";
 
 function Navbar() {
   const appName = import.meta.env.VITE_APP_NAME;
-  const repo = import.meta.env.VITE_GITHUB_REPOSITORY;
   const ref = import.meta.env.VITE_GIT_REF.split("/").pop() || "v0.0";
 
   return (
@@ -25,9 +24,7 @@ function Navbar() {
 
       <div className="inline-flex items-center">
         <div className="self-end mr-1 pb-3">
-          <span className="text-xs">
-            {repo}/{ref}
-          </span>
+          <span className="text-xs">{ref}</span>
         </div>
         <GithubButton />
         <ModeToggle />
