@@ -35,6 +35,8 @@ export default function ChartCard() {
   const chartData = track ? getChartData(track.sum) : [];
   const segments = track ? track.segments : [];
 
+  // https://recharts.org/en-US/examples/CustomContentOfTooltip
+
   return (
     <Card>
       <CardHeader>
@@ -58,7 +60,7 @@ export default function ChartCard() {
               axisLine={false}
               tickMargin={8}
               minTickGap={50}
-              tickFormatter={(value) => Math.round(value / 1000).toString()}
+              allowDuplicatedCategory={false}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <ChartLegend content={<ChartLegendContent />} />

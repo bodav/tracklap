@@ -12,6 +12,7 @@ interface TrackPointWithMetadata extends TrackPoint {
   distanceTraveledUntilThisPoint?: number;
   speedInMetersPerSecond?: number;
   pace?: string;
+  paceInMinutesPerKm?: number;
 }
 
 interface Track {
@@ -32,8 +33,6 @@ async function getTrack(options: TrackOptions): Promise<Track> {
       options.trimStart,
       options.trimEnd
     );
-
-    //trackPoints = calculateTrackPointMetadata(trackPoints);
   }
 
   const summary = sumTrackSegment(trackPoints);
@@ -63,10 +62,13 @@ function calculateTrackPointMetadata(
     const paceInMinutesPerKm =
       timeInMinutes / (distanceTraveledInMeters / 1000); // minutes per kilometer
 
+    next.paceInMinutesPerKm = paceInMinutesPerKm;
+
     if (next.distanceFromLastPoint !== 0) {
       const paceMinutes = Math.floor(paceInMinutesPerKm);
       const paceSeconds = Math.floor((paceInMinutesPerKm - paceMinutes) * 60);
       next.pace = `${paceMinutes}:${paceSeconds.toString().padStart(2, "0")} min/km`;
+
       //console.log(`Speed: ${speed} m/s, Pace: ${next.pace}`);
     }
 

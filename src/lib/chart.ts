@@ -1,7 +1,7 @@
 import { TrackSegment } from "@/lib/segment";
 
 interface ChartData {
-  distance: number;
+  distance: string;
   speed: number;
 }
 
@@ -11,11 +11,11 @@ function getChartData(segment: TrackSegment | undefined): ChartData[] {
   }
 
   const rawData = segment.trackPoints.map((tp) => ({
-    distance: tp.distanceTraveledUntilThisPoint || 0,
+    distance: Math.round(tp.distanceTraveledUntilThisPoint || 0).toString(),
     speed: tp.speedInMetersPerSecond || 0
   }));
 
-  const smoothedData = smoothSpeed(rawData, 10);
+  const smoothedData = smoothSpeed(rawData, 5);
 
   return smoothedData;
 }

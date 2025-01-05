@@ -34,7 +34,7 @@ function SummaryCard() {
             </div>
             <div className="text-center">
               <span className="font-thin text-sm block">Avg. Pace</span>
-              <span className="font-bold block text-2xl">{`${track?.sum?.averagePace || ""}/min`}</span>
+              <span className="font-bold block text-2xl">{`${track?.sum?.averagePace || ""}/km`}</span>
             </div>
             <div className="text-center">
               <span className="font-thin text-sm block">Avg. Heartrate</span>
