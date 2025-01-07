@@ -7,21 +7,13 @@ import {
   TableCell,
   TableHead
 } from "@/components/ui/table";
-import { TrackSegment } from "@/lib/segment";
+import { TrainingPace } from "@/lib/vdot";
 
-interface SegmentsTableProps {
-  segments: TrackSegment[];
+interface TrainingTableProps {
+  trainingPaces: TrainingPace[];
 }
 
-const TrainingTable: React.FC<SegmentsTableProps> = ({ segments }) => {
-  const trainingPaces = [
-    { zone: "Easy (59 - 74 %vVO2max)", pace: "5:00 - 5:30" },
-    { zone: "Marathon (59 - 74 %vVO2max)", pace: "4:30 - 4:45" },
-    { zone: "Threshold (59 - 74 %vVO2max)", pace: "4:00 - 4:15" },
-    { zone: "Interval (59 - 74 %vVO2max)", pace: "3:30 - 3:45" },
-    { zone: "Repetition (59 - 74 %vVO2max)", pace: "3:00 - 3:15" }
-  ];
-
+const TrainingTable: React.FC<TrainingTableProps> = ({ trainingPaces }) => {
   return (
     <Table>
       <TableHeader>
@@ -31,10 +23,14 @@ const TrainingTable: React.FC<SegmentsTableProps> = ({ segments }) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {trainingPaces?.map((train, index) => (
+        {trainingPaces.map((train, index) => (
           <TableRow key={index}>
-            <TableCell>{train.zone}</TableCell>
-            <TableCell>{train.pace} /km</TableCell>
+            <TableCell>
+              {train.zone} ({train.zoneMin} - {train.zoneMax} %vVo2Max)
+            </TableCell>
+            <TableCell>
+              {train.paceMin} - {train.paceMax} /km
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

@@ -68,8 +68,6 @@ function calculateTrackPointMetadata(
       const paceMinutes = Math.floor(paceInMinutesPerKm);
       const paceSeconds = Math.floor((paceInMinutesPerKm - paceMinutes) * 60);
       next.pace = `${paceMinutes}:${paceSeconds.toString().padStart(2, "0")} min/km`;
-
-      //console.log(`Speed: ${speed} m/s, Pace: ${next.pace}`);
     }
 
     return next;

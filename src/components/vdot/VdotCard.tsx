@@ -5,7 +5,6 @@ import {
   CardTitle,
   CardDescription
 } from "@/components/ui/card";
-//import { useTrack } from "@/components/TrackProvider";
 import TrainingTable from "./TrainingTable";
 import RaceEquivalentTable from "./RaceEquivalentTable";
 
@@ -17,6 +16,44 @@ function VdotCard() {
     { distance: "10K", time: "40:00", pace: "4:00" },
     { distance: "Half Marathon", time: "1:30:00", pace: "4:15" },
     { distance: "Marathon", time: "3:00:00", pace: "4:15" }
+  ];
+
+  const trainingPaces = [
+    {
+      zone: "Easy",
+      zoneMin: 59,
+      zoneMax: 74,
+      paceMin: "5:00",
+      paceMax: "5:30"
+    },
+    {
+      zone: "Marathon",
+      zoneMin: 59,
+      zoneMax: 74,
+      paceMin: "5:00",
+      paceMax: "5:30"
+    },
+    {
+      zone: "Threshold",
+      zoneMin: 59,
+      zoneMax: 74,
+      paceMin: "5:00",
+      paceMax: "5:30"
+    },
+    {
+      zone: "Interval",
+      zoneMin: 59,
+      zoneMax: 74,
+      paceMin: "5:00",
+      paceMax: "5:30"
+    },
+    {
+      zone: "Repetition",
+      zoneMin: 59,
+      zoneMax: 74,
+      paceMin: "5:00",
+      paceMax: "5:30"
+    }
   ];
 
   return (
@@ -54,7 +91,7 @@ function VdotCard() {
                   <div className="text-2xl font-semibold leading-none tracking-tight mb-2">
                     Training Paces
                   </div>
-                  <TrainingTable segments={[]} />
+                  <TrainingTable trainingPaces={trainingPaces} />
                 </div>
                 <div className="mx-8">
                   <div className="text-2xl font-semibold leading-none tracking-tight mb-2">

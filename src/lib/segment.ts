@@ -33,8 +33,9 @@ function sumTrackSegment(trackPoints: TrackPointWithMetadata[]): TrackSegment {
   const averageHeartRate =
     trackPoints.reduce((sum, tp) => sum + (tp.hr || 0), 0) / trackPoints.length;
   const averageCadence =
-    trackPoints.reduce((sum, tp) => sum + (tp.cad || 0), 0) /
-    trackPoints.length;
+    (trackPoints.reduce((sum, tp) => sum + (tp.cad || 0), 0) /
+      trackPoints.length) *
+    2;
   const averagePower =
     trackPoints.reduce((sum, tp) => sum + (tp.power || 0), 0) /
     trackPoints.length;
