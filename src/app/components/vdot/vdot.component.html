@@ -1,0 +1,42 @@
+@if (vdotData()) {
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">VDOT Analysis</h2>
+
+      <div class="stat bg-primary text-primary-content rounded-lg mb-4">
+        <div class="stat-title text-primary-content/70">VDOT Score</div>
+        <div class="stat-value">{{ vdotData()!.vdot }}</div>
+        <div class="stat-desc text-primary-content/70">
+          VO2 Max: {{ vdotData()!.oxygenCost.toFixed(2) }} ml/kg/min
+        </div>
+      </div>
+
+      <h3 class="font-bold text-lg mb-2">Training Paces</h3>
+      <div class="overflow-x-auto">
+        <table class="table table-zebra">
+          <thead>
+            <tr>
+              <th>Zone</th>
+              <th>Min Pace</th>
+              <th>Max Pace</th>
+              <th>% Max</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (pace of vdotData()!.trainingPaces; track $index) {
+              <tr>
+                <td class="font-bold">{{ pace.zone }}</td>
+                <td>{{ pace.paceMin }} /km</td>
+                <td>{{ pace.paceMax }} /km</td>
+                <td>
+                  {{ (pace.zoneMin * 100).toFixed(0) }}% -
+                  {{ (pace.zoneMax * 100).toFixed(0) }}%
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,45 @@
+@if (track()) {
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">Speed Chart</h2>
+      <div class="h-[300px] xl:h-[400px] 2xl:h-[400px] w-full">
+        <canvas
+          baseChart
+          [data]="lineChartData()"
+          [options]="lineChartOptions"
+          type="line"></canvas>
+      </div>
+
+      @if (track()?.segments && track()!.segments.length > 0) {
+        <div class="divider"></div>
+        <h3 class="font-bold">Segments</h3>
+        <div class="overflow-x-auto">
+          <table class="table table-zebra">
+            <thead>
+              <tr>
+                <th>Distance (m)</th>
+                <th>Duration</th>
+                <th>Avg Pace</th>
+                <th>Avg HR</th>
+                <th>Avg Cadence</th>
+                <th>Avg Power</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (segment of track()!.segments; track $index) {
+                <tr>
+                  <td>{{ segment.totalDistance }}</td>
+                  <td>{{ segment.duration }}</td>
+                  <td>{{ segment.averagePace }}</td>
+                  <td>{{ segment.averageHeartRate }}</td>
+                  <td>{{ segment.averageCadence }}</td>
+                  <td>{{ segment.averagePower }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </div>
+  </div>
+}

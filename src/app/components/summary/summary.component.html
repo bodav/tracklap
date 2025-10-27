@@ -1,0 +1,54 @@
+@if (summary()) {
+  <div class="card bg-base-200 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title">Summary</h2>
+      <div class="stats stats-vertical shadow">
+        <div class="stat">
+          <div class="stat-title">Total Distance</div>
+          <div class="stat-value text-2xl">
+            {{ (summary()!.totalDistance / 1000).toFixed(2) }} km
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-title">Duration</div>
+          <div class="stat-value text-2xl">{{ summary()!.duration }}</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-title">Average Pace</div>
+          <div class="stat-value text-2xl">
+            {{ summary()!.averagePace }} /km
+          </div>
+        </div>
+
+        @if (summary()!.averageHeartRate > 0) {
+          <div class="stat">
+            <div class="stat-title">Average Heart Rate</div>
+            <div class="stat-value text-2xl">
+              {{ summary()!.averageHeartRate }} bpm
+            </div>
+          </div>
+        }
+
+        @if (summary()!.averageCadence > 0) {
+          <div class="stat">
+            <div class="stat-title">Average Cadence</div>
+            <div class="stat-value text-2xl">
+              {{ summary()!.averageCadence }} spm
+            </div>
+          </div>
+        }
+
+        @if (summary()!.averagePower > 0) {
+          <div class="stat">
+            <div class="stat-title">Average Power</div>
+            <div class="stat-value text-2xl">
+              {{ summary()!.averagePower }} W
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

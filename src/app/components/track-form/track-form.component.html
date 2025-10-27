@@ -1,0 +1,61 @@
+<div class="card bg-base-100 shadow-xl">
+  <div class="card-body">
+    <h2 class="card-title">Track</h2>
+    <p class="text-sm text-base-content/70">{{ fileDescription() }}</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div class="form-control w-full">
+        <label class="label">
+          <span class="label-text font-bold uppercase text-xs"
+            >Strava GPX file</span
+          >
+        </label>
+        <input
+          type="file"
+          accept=".gpx"
+          class="file-input file-input-bordered w-full"
+          (change)="onFileChange($event)" />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text font-bold uppercase text-xs"
+              >Trim start (Meters)</span
+            >
+          </label>
+          <input
+            type="number"
+            placeholder="meters"
+            class="input input-bordered w-full"
+            formControlName="trimStart" />
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text font-bold uppercase text-xs"
+              >Trim end (Meters)</span
+            >
+          </label>
+          <input
+            type="number"
+            placeholder="meters"
+            class="input input-bordered w-full"
+            formControlName="trimEnd" />
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary w-full"
+        [disabled]="isSubmitting()">
+        @if (isSubmitting()) {
+          <span class="loading loading-spinner"></span>
+          Calculating...
+        } @else {
+          Calculate
+        }
+      </button>
+    </form>
+  </div>
+</div>
